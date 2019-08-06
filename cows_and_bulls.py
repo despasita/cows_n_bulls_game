@@ -19,18 +19,21 @@ def cows(guess, base, len):
     bools = 0
     hits = 0
     size = len
+    guess_list = list(guess)
+    base_list = list(base)
 
-    for i, j in zip(guess, base):
-        if guess == base:
-            print("you win!")
-            return
-        elif i == j:
-            hits += 1
-        elif i in base and i != j:
-            bools += 1
-    print("Bools: ", bools)
-    print("Hits: ", hits)
-    play()
+    if guess == base:
+        print("Good job! you win!")
+    else:
+        for i in range(0, size):
+            if guess_list[i] == base_list[i]:
+                hits += 1
+            else:
+                if guess_list[i] in base_list and guess.count(guess_list[i]) == 1:
+                    bools += 1
+        print("Bools: ", bools)
+        print("Hits: ", hits)
+        play()
 
 def play():
     user_guess = input("please type a guess: ")
@@ -41,4 +44,5 @@ len_and_level()
 base_word = random_word_gen_by_len(game_word_len)
 # print(base_word)
 play()
+
 input("press any key to exit")
